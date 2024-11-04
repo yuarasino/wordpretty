@@ -3,6 +3,7 @@
   "type": "module",
   "workspaces": ["packages/*"],
   "scripts": {
+    "build": "bun run --filter '*' build",
     "lint": "bun x --bun biome ci",
     "fix": "bun x --bun biome check --fix --unsafe"
   },

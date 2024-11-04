@@ -1,0 +1,3 @@
+{
+  "extends": ["@wordpretty/shared/tsconfig.json"]
+}
