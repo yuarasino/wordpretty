@@ -2,7 +2,14 @@
   "name": "@wordpretty/wordpretty",
   "type": "module",
   "workspaces": ["packages/*"],
+  "scripts": {
+    "lint": "bun x --bun biome ci",
+    "fix": "bun x --bun biome check --fix --unsafe"
+  },
   "dependencies": {
     "@wordpretty/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
   }
 }
