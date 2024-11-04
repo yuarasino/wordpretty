@@ -1,0 +1,8 @@
+{
+  "name": "@wordpretty/wordpretty",
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "dependencies": {
+    "@wordpretty/shared": "workspace:*"
+  }
+}
