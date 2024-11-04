@@ -1,0 +1,19 @@
+{
+  "name": "@wordpretty/config",
+  "type": "module",
+  "scripts": {
+    "dev": "bun x --bun vite dev",
+    "build": "bun x --bun vite build"
+  },
+  "dependencies": {
+    "@wordpretty/shared": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10"
+  }
+}
