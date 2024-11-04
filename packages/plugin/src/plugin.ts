@@ -6,10 +6,10 @@ function createPlugin(): OnePlugin {
   let _api: PluginAPI
 
   return {
-    name: consts.PLUGIN_NAME_JP,
+    name: consts.PLUGIN_NAME_JA,
     uid: consts.PLUGIN_UID,
     version: consts.PLUGIN_VERSION,
-    author: consts.PLUGIN_AUTHOR_JP,
+    author: consts.PLUGIN_AUTHOR_JA,
     url: `${consts.PLUGIN_WEB_EP}/index.html`,
     permissions: ["filter.comment"],
     defaultState: {},

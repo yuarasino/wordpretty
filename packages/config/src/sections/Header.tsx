@@ -8,7 +8,7 @@ export default function Header() {
     <AppBar color="secondary" sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {consts.PLUGIN_NAME_JP}
+          {consts.PLUGIN_NAME_JA}
         </Typography>
         <Typography
           variant="button"
