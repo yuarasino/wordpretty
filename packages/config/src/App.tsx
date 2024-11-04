@@ -1,10 +1,13 @@
-import * as consts from "@wordpretty/shared/src/consts"
+import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider } from "@mui/material/styles"
+import Layout from "./sections/Layout"
+import theme from "./theme"
 
 export default function App() {
   return (
-    <div>
-      <title>{consts.PLUGIN_NAME_JP}</title>
-      <h1>{consts.PLUGIN_NAME_JP}</h1>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Layout />
+    </ThemeProvider>
   )
 }

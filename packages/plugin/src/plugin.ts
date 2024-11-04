@@ -1,4 +1,4 @@
-import * as consts from "@wordpretty/shared/src/consts"
+import * as consts from "@wordpretty/shared/consts"
 
 import type { OnePlugin, PluginAPI } from "@onecomme.com/onesdk/types/Plugin"
 

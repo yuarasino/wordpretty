@@ -1,3 +1,4 @@
+import * as consts from "@wordpretty/shared/consts"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import App from "./App.tsx"
@@ -9,6 +10,7 @@ function renderApp() {
   const root = createRoot(elem)
   root.render(
     <StrictMode>
+      <title>{consts.PLUGIN_NAME_JP}</title>
       <App />
     </StrictMode>,
   )
