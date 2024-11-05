@@ -1,5 +1,5 @@
 import react from "@vitejs/plugin-react"
-import * as consts from "@wordpretty/shared/consts"
+import * as consts from "@wordpretty/shared/lib/consts"
 import { defineConfig } from "vite"
 
 export default defineConfig({
