@@ -38,6 +38,11 @@ export const selectItemAtom = atom(
   },
 )
 
+const moveItemAtom = atom(null, (get, set, newItems: WordPrettyItem[]) => {
+  set(itemsAtom, newItems)
+  set(saveConfigAtom)
+})
+
 export const toggleItemAtom = atom(
   null,
   async (get, set, targetItem: WordPrettyItem) => {
@@ -91,6 +96,7 @@ export default function useWordPrettyStore() {
   const activeItem = useAtomValue(activeItemAtom)
   const addItem = useSetAtom(addItemAtom)
   const selectItem = useSetAtom(selectItemAtom)
+  const moveItem = useSetAtom(moveItemAtom)
   const toggleItem = useSetAtom(toggleItemAtom)
   const copyItem = useSetAtom(copyItemAtom)
   const deleteItem = useSetAtom(deleteItemAtom)
@@ -102,6 +108,7 @@ export default function useWordPrettyStore() {
       activeItem,
       addItem,
       selectItem,
+      moveItem,
       toggleItem,
       copyItem,
       deleteItem,
@@ -112,6 +119,7 @@ export default function useWordPrettyStore() {
       activeItem,
       addItem,
       selectItem,
+      moveItem,
       toggleItem,
       copyItem,
       deleteItem,

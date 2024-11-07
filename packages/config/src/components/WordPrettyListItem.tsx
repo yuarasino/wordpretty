@@ -1,3 +1,5 @@
+import { useSortable } from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
 import Delete from "@mui/icons-material/Delete"
 import DragIndicator from "@mui/icons-material/DragIndicator"
 import FileCopy from "@mui/icons-material/FileCopy"
@@ -18,10 +20,20 @@ export default function WordPrettyListItem({ item }: WordPrettyListItemProps) {
   const { activeItem, selectItem, toggleItem, copyItem, deleteItem } =
     useWordPrettyStore()
 
+  const {
+    listeners,
+    isDragging,
+    transform,
+    transition,
+    setNodeRef,
+    setActivatorNodeRef,
+  } = useSortable({ id: item.id })
+
   return (
     <ListItem
       divider
       disablePadding
+      ref={setNodeRef}
       secondaryAction={
         <>
           <IconButton onClick={() => copyItem(item)}>
@@ -32,13 +44,23 @@ export default function WordPrettyListItem({ item }: WordPrettyListItemProps) {
           </IconButton>
         </>
       }
-      sx={{ "& .MuiListItemButton-root": { paddingRight: 10 } }}
+      sx={{
+        transform: CSS.Transform.toString(transform),
+        transition: transition,
+        "& .MuiListItemButton-root": { paddingRight: 10 },
+      }}
     >
       <ListItemButton
         selected={item.id === activeItem?.id}
         onClick={() => selectItem(item)}
       >
-        <IconButton disableRipple edge="start">
+        <IconButton
+          disableRipple
+          edge="start"
+          {...listeners}
+          ref={setActivatorNodeRef}
+          sx={{ cursor: isDragging ? "grabbing" : "grab" }}
+        >
           <DragIndicator fontSize="small" />
         </IconButton>
         <Switch
