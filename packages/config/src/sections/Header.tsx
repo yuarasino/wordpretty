@@ -5,7 +5,10 @@ import * as consts from "@wordpretty/shared/lib/consts"
 
 export default function Header() {
   return (
-    <AppBar color="secondary" sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
+    <AppBar
+      color="secondary"
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+    >
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {consts.PLUGIN_NAME_JA}

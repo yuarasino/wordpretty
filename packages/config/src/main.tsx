@@ -10,7 +10,6 @@ function renderApp() {
   const root = createRoot(elem)
   root.render(
     <StrictMode>
-      <title>{consts.PLUGIN_NAME_JA}</title>
       <App />
     </StrictMode>,
   )

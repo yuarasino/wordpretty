@@ -11,6 +11,9 @@
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
     "@wordpretty/shared": "workspace:*",
+    "jotai": "^2.10.1",
+    "jotai-optics": "^0.4.0",
+    "nanoid": "^5.0.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

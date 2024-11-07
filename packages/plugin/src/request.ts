@@ -5,7 +5,7 @@ import type {
 } from "@onecomme.com/onesdk/types/Plugin"
 import type { PluginConfig } from "@wordpretty/shared/lib/types"
 
-async function loadPluginConfig(
+async function loadConfig(
   req: PluginRequest,
   api: PluginAPI,
 ): Promise<PluginResponse> {
@@ -13,7 +13,7 @@ async function loadPluginConfig(
   return { code: 200, response: JSON.stringify(config) }
 }
 
-async function savePluginConfig(
+async function saveConfig(
   req: PluginRequest,
   api: PluginAPI,
 ): Promise<PluginResponse> {
@@ -28,9 +28,9 @@ export default async function request(
 ): Promise<PluginResponse> {
   switch (req.method) {
     case "GET":
-      return loadPluginConfig(req, api)
+      return loadConfig(req, api)
     case "POST":
-      return savePluginConfig(req, api)
+      return saveConfig(req, api)
     default:
       throw new Error()
   }
