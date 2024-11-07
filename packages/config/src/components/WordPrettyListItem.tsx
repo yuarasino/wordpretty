@@ -8,7 +8,9 @@ import ListItem from "@mui/material/ListItem"
 import ListItemButton from "@mui/material/ListItemButton"
 import ListItemText from "@mui/material/ListItemText"
 import Switch from "@mui/material/Switch"
+import { useState } from "react"
 import useWordPrettyStore from "../stores/useWordPrettyStore"
+import ConfirmDialog from "./ConfirmDialog"
 
 import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
 
@@ -19,6 +21,8 @@ export type WordPrettyListItemProps = {
 export default function WordPrettyListItem({ item }: WordPrettyListItemProps) {
   const { activeItem, selectItem, toggleItem, copyItem, deleteItem } =
     useWordPrettyStore()
+
+  const [open, setOpen] = useState(false)
 
   const {
     listeners,
@@ -39,9 +43,16 @@ export default function WordPrettyListItem({ item }: WordPrettyListItemProps) {
           <IconButton onClick={() => copyItem(item)}>
             <FileCopy fontSize="small" />
           </IconButton>
-          <IconButton edge="end" onClick={() => deleteItem(item)}>
+          <IconButton edge="end" onClick={() => setOpen(true)}>
             <Delete fontSize="small" />
           </IconButton>
+          <ConfirmDialog
+            title="確認"
+            content="この設定を削除してもよろしいですか？"
+            open={open}
+            onCancel={() => setOpen(false)}
+            onConfirm={() => deleteItem(item)}
+          />
         </>
       }
       sx={{
