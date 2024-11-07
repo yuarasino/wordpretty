@@ -31,11 +31,69 @@ export const addItemAtom = atom(null, async (get, set) => {
   set(saveConfigAtom)
 })
 
+export const selectItemAtom = atom(
+  null,
+  async (get, set, targetItem: WordPrettyItem) => {
+    set(activeItemAtom, targetItem)
+  },
+)
+
+export const toggleItemAtom = atom(
+  null,
+  async (get, set, targetItem: WordPrettyItem) => {
+    const items = get(itemsAtom)
+    const newItem: WordPrettyItem = {
+      ...targetItem,
+      enabled: !targetItem.enabled,
+    }
+    set(
+      itemsAtom,
+      items.map((item) => (item.id === targetItem.id ? newItem : item)),
+    )
+    set(saveConfigAtom)
+  },
+)
+
+export const copyItemAtom = atom(
+  null,
+  async (get, set, targetItem: WordPrettyItem) => {
+    const items = get(itemsAtom)
+    const newItem: WordPrettyItem = {
+      ...targetItem,
+      id: nanoid(8),
+    }
+    set(itemsAtom, [newItem, ...items])
+    set(activeItemAtom, newItem)
+    set(saveConfigAtom)
+  },
+)
+
+export const deleteItemAtom = atom(
+  null,
+  async (get, set, targetItem: WordPrettyItem) => {
+    const items = get(itemsAtom)
+    const activeItem = get(activeItemAtom)
+    set(
+      itemsAtom,
+      items.filter((item) => item.id !== targetItem.id),
+    )
+    set(
+      activeItemAtom,
+      activeItem?.id !== targetItem.id ? activeItem : undefined,
+    )
+    set(saveConfigAtom)
+  },
+)
+
 export default function useWordPrettyStore() {
   const wordPretty = useAtomValue(wordPrettyAtom)
   const items = useAtomValue(itemsAtom)
   const activeItem = useAtomValue(activeItemAtom)
   const addItem = useSetAtom(addItemAtom)
+  const selectItem = useSetAtom(selectItemAtom)
+  const toggleItem = useSetAtom(toggleItemAtom)
+  const copyItem = useSetAtom(copyItemAtom)
+  const deleteItem = useSetAtom(deleteItemAtom)
 
   return useMemo(
     () => ({
@@ -43,7 +101,20 @@ export default function useWordPrettyStore() {
       items,
       activeItem,
       addItem,
+      selectItem,
+      toggleItem,
+      copyItem,
+      deleteItem,
     }),
-    [wordPretty, items, activeItem, addItem],
+    [
+      wordPretty,
+      items,
+      activeItem,
+      addItem,
+      selectItem,
+      toggleItem,
+      copyItem,
+      deleteItem,
+    ],
   )
 }

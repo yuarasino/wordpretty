@@ -12,7 +12,6 @@ export default function Nav({ width = 360 }: NavProps) {
       variant="permanent"
       sx={{
         width: width,
-        flexShrink: 0,
         "& .MuiDrawer-paper": { width: width },
       }}
     >

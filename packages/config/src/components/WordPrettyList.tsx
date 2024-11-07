@@ -1,9 +1,9 @@
 import Button from "@mui/material/Button"
 import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
 import Stack from "@mui/material/Stack"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
+import WordPrettyListItem from "../components/WordPrettyListItem"
 import useWordPrettyStore from "../stores/useWordPrettyStore"
 
 export default function WordPrettyList() {
@@ -28,9 +28,7 @@ export default function WordPrettyList() {
       </Toolbar>
       <List disablePadding sx={{ overflowY: "auto" }}>
         {items.map((item) => (
-          <ListItem divider key={item.id}>
-            {item.name}
-          </ListItem>
+          <WordPrettyListItem key={item.id} item={item} />
         ))}
       </List>
     </Stack>
