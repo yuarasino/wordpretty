@@ -10,12 +10,12 @@ export default function Header() {
       sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
     >
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography component="div" variant="h6" sx={{ flexGrow: 1 }}>
           {consts.PLUGIN_NAME_JA}
         </Typography>
         <Typography
-          variant="button"
           component="div"
+          variant="button"
           sx={{ textTransform: "none" }}
         >
           {`v${consts.PLUGIN_VERSION}`}

@@ -32,7 +32,7 @@ export default function WordPrettyList() {
           zIndex: 1,
         }}
       >
-        <Typography variant="subtitle1" component="div" sx={{ flexGrow: 1 }}>
+        <Typography component="div" variant="subtitle1" sx={{ flexGrow: 1 }}>
           WordPretty設定
         </Typography>
         <Button variant="outlined" size="small" onClick={() => addItem()}>
