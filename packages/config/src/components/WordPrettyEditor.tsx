@@ -6,13 +6,18 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
+import { useEffect } from "react"
+import useImageDirStore from "../stores/useImageDirStore"
 import useWordPrettyStore from "../stores/useWordPrettyStore"
 import ImageField from "./ImageField"
 
 export default function WordPrettyEditor() {
   const { activeItem } = useWordPrettyStore()
+  const { images, openImageDir, readImageDir } = useImageDirStore()
 
-  const images = ["fugu.png", "samples/fugu2.png"]
+  useEffect(() => {
+    readImageDir()
+  }, [readImageDir])
 
   return (
     <Stack component="form">
@@ -63,7 +68,11 @@ export default function WordPrettyEditor() {
               <Alert
                 severity="warning"
                 action={
-                  <Button color="inherit" size="small">
+                  <Button
+                    color="inherit"
+                    size="small"
+                    onClick={() => openImageDir()}
+                  >
                     画像フォルダを開く
                   </Button>
                 }
@@ -78,6 +87,7 @@ export default function WordPrettyEditor() {
                 label="画像 (jpg, png, gif)"
                 helperText="ファイル名に全角文字や記号が入っていると画像が出てこないときがあります。"
                 defaultValue={activeItem.image}
+                onOpen={() => readImageDir()}
                 images={images}
               />
             </Box>

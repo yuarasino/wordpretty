@@ -2,11 +2,11 @@ import { atom, useAtomValue, useSetAtom } from "jotai"
 import { focusAtom } from "jotai-optics"
 import { nanoid } from "nanoid"
 import { useMemo } from "react"
-import { configAtom, saveConfigAtom } from "./useConfigStore"
+import { pluginConfigAtom, savePluginConfigAtom } from "./usePluginConfigStore"
 
 import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
 
-export const wordPrettyAtom = focusAtom(configAtom, (optic) =>
+export const wordPrettyAtom = focusAtom(pluginConfigAtom, (optic) =>
   optic.prop("wordPretty"),
 )
 
@@ -28,7 +28,7 @@ export const addItemAtom = atom(null, async (get, set) => {
   }
   set(itemsAtom, [newItem, ...items])
   set(activeItemAtom, newItem)
-  set(saveConfigAtom)
+  set(savePluginConfigAtom)
 })
 
 export const selectItemAtom = atom(
@@ -40,7 +40,7 @@ export const selectItemAtom = atom(
 
 const moveItemAtom = atom(null, (get, set, newItems: WordPrettyItem[]) => {
   set(itemsAtom, newItems)
-  set(saveConfigAtom)
+  set(savePluginConfigAtom)
 })
 
 export const toggleItemAtom = atom(
@@ -55,7 +55,7 @@ export const toggleItemAtom = atom(
       itemsAtom,
       items.map((item) => (item.id === targetItem.id ? newItem : item)),
     )
-    set(saveConfigAtom)
+    set(savePluginConfigAtom)
   },
 )
 
@@ -69,7 +69,7 @@ export const copyItemAtom = atom(
     }
     set(itemsAtom, [newItem, ...items])
     set(activeItemAtom, newItem)
-    set(saveConfigAtom)
+    set(savePluginConfigAtom)
   },
 )
 
@@ -86,7 +86,7 @@ export const deleteItemAtom = atom(
       activeItemAtom,
       activeItem?.id !== targetItem.id ? activeItem : undefined,
     )
-    set(saveConfigAtom)
+    set(savePluginConfigAtom)
   },
 )
 

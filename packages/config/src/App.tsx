@@ -3,15 +3,15 @@ import { ThemeProvider } from "@mui/material/styles"
 import * as consts from "@wordpretty/shared/lib/consts"
 import { useEffect } from "react"
 import Layout from "./sections/Layout"
-import useConfigStore from "./stores/useConfigStore"
+import usePluginConfigStore from "./stores/usePluginConfigStore"
 import theme from "./styles/theme"
 
 export default function App() {
-  const { loadConfig } = useConfigStore()
+  const { loadPluginConfig } = usePluginConfigStore()
 
   useEffect(() => {
-    loadConfig()
-  }, [loadConfig])
+    loadPluginConfig()
+  }, [loadPluginConfig])
 
   return (
     <ThemeProvider theme={theme}>

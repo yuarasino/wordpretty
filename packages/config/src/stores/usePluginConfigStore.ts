@@ -4,28 +4,28 @@ import { useMemo } from "react"
 
 import type { PluginConfig } from "@wordpretty/shared/lib/types"
 
-export const configAtom = atom({
+export const pluginConfigAtom = atom({
   wordPretty: { items: [] },
 } as PluginConfig)
 
-export const loadConfigAtom = atom(null, async (_get, set) => {
+export const loadPluginConfigAtom = atom(null, async (get, set) => {
   let m_data: string
   if (import.meta.env.PROD) {
     // 本番環境ではプラグインのStoreから取得
     const res = await fetch(consts.PLUGIN_API_EP, { method: "GET" })
-    const resp = (await res.json()) as { response: string }
-    m_data = resp.response
+    const json = (await res.json()) as { response: string }
+    m_data = json.response
   } else {
     // 開発環境ではブラウザのLocalStorageから取得
     m_data = localStorage.getItem("config") ?? ""
   }
   if (m_data) {
-    set(configAtom, JSON.parse(m_data))
+    set(pluginConfigAtom, JSON.parse(m_data))
   }
 })
 
-export const saveConfigAtom = atom(null, async (get, _set) => {
-  const m_data = JSON.stringify(get(configAtom))
+export const savePluginConfigAtom = atom(null, async (get, set) => {
+  const m_data = JSON.stringify(get(pluginConfigAtom))
   if (import.meta.env.PROD) {
     // 本番環境ではプラグインのStoreに保存
     await fetch(consts.PLUGIN_API_EP, { method: "POST", body: m_data })
@@ -35,17 +35,17 @@ export const saveConfigAtom = atom(null, async (get, _set) => {
   }
 })
 
-export default function useConfigStore() {
-  const config = useAtomValue(configAtom)
-  const loadConfig = useSetAtom(loadConfigAtom)
-  const saveConfig = useSetAtom(saveConfigAtom)
+export default function usePluginConfigStore() {
+  const pluginConfig = useAtomValue(pluginConfigAtom)
+  const loadPluginConfig = useSetAtom(loadPluginConfigAtom)
+  const savePluginConfig = useSetAtom(savePluginConfigAtom)
 
   return useMemo(
     () => ({
-      config,
-      loadConfig,
-      saveConfig,
+      pluginConfig,
+      loadPluginConfig,
+      savePluginConfig,
     }),
-    [config, loadConfig, saveConfig],
+    [pluginConfig, loadPluginConfig, savePluginConfig],
   )
 }

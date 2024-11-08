@@ -16,6 +16,7 @@ export type ImageFieldProps = {
   value?: string
   defaultValue?: string
   onChange?: (event: SelectChangeEvent) => void
+  onOpen?: (event: object) => void
   images: string[]
 }
 
@@ -27,6 +28,7 @@ export default function ImageField({
   value,
   defaultValue,
   onChange,
+  onOpen,
   images,
 }: ImageFieldProps) {
   const size = 36
@@ -39,6 +41,7 @@ export default function ImageField({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
+        onOpen={onOpen}
       >
         {images.map((image) => (
           <MenuItem key={image} value={image}>
