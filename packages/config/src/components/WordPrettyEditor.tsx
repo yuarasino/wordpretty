@@ -7,20 +7,42 @@ import TextField from "@mui/material/TextField"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 import { useEffect } from "react"
+import { Controller, useForm } from "react-hook-form"
 import useImageDirStore from "../stores/useImageDirStore"
 import useWordPrettyStore from "../stores/useWordPrettyStore"
 import ImageField from "./ImageField"
 
+import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
+
 export default function WordPrettyEditor() {
-  const { activeItem } = useWordPrettyStore()
+  const { activeItem, editItem } = useWordPrettyStore()
   const { images, openImageDir, readImageDir } = useImageDirStore()
+
+  const { control, reset, handleSubmit } = useForm<WordPrettyItem>({
+    defaultValues: {
+      enabled: true,
+      id: "",
+      name: "",
+      pattern: "",
+      image: "",
+      size: 0,
+    },
+  })
+
+  const onEditItem = (data: WordPrettyItem) => {
+    editItem(data)
+  }
 
   useEffect(() => {
     readImageDir()
   }, [readImageDir])
 
+  useEffect(() => {
+    reset(activeItem)
+  }, [activeItem, reset])
+
   return (
-    <Stack component="form">
+    <Stack component="form" onSubmit={handleSubmit(onEditItem)}>
       <Toolbar
         variant="dense"
         sx={{ backgroundColor: "white", boxShadow: 1, zIndex: 1 }}
@@ -40,26 +62,42 @@ export default function WordPrettyEditor() {
       {activeItem && (
         <Stack spacing={3} padding={3}>
           <Box>
-            <TextField
-              required
-              fullWidth
-              label="名前"
-              defaultValue={activeItem.name}
-              slotProps={{
-                htmlInput: { "data-1p-ignore": true },
-              }}
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: true }}
+              render={({ field, formState: { errors } }) => (
+                <TextField
+                  required
+                  fullWidth
+                  label="名前"
+                  {...field}
+                  error={!!errors.name}
+                  slotProps={{
+                    htmlInput: { "data-1p-ignore": true },
+                  }}
+                />
+              )}
             />
           </Box>
           <Box>
-            <TextField
-              required
-              fullWidth
-              multiline
-              label="パターン"
-              helperText="1行につき1パターン記述できます。正規表現も使えます。"
-              minRows={3}
-              maxRows={3}
-              defaultValue={activeItem.pattern}
+            <Controller
+              name="pattern"
+              control={control}
+              rules={{ required: true }}
+              render={({ field, formState: { errors } }) => (
+                <TextField
+                  required
+                  fullWidth
+                  multiline
+                  label="パターン"
+                  helperText="1行につき1パターン記述できます。正規表現も使えます。"
+                  minRows={3}
+                  maxRows={3}
+                  {...field}
+                  error={!!errors.pattern}
+                />
+              )}
             />
           </Box>
           <Divider />
@@ -82,23 +120,43 @@ export default function WordPrettyEditor() {
               </Alert>
             </Box>
             <Box>
-              <ImageField
-                required
-                label="画像 (jpg, png, gif)"
-                helperText="ファイル名に全角文字や記号が入っていると画像が出てこないときがあります。"
+              <Controller
+                name="image"
+                control={control}
                 defaultValue={activeItem.image}
-                onOpen={() => readImageDir()}
-                images={images}
+                rules={{ required: true }}
+                render={({ field, formState: { errors } }) => (
+                  <ImageField
+                    required
+                    label="画像 (jpg, png, gif)"
+                    helperText="ファイル名に全角文字や記号が入っていると画像が出てこないときがあります。"
+                    {...field}
+                    error={!!errors.image}
+                    onOpen={() => readImageDir()}
+                    images={images}
+                  />
+                )}
               />
             </Box>
           </Stack>
           <Divider />
           <Box>
-            <TextField
-              required
-              type="number"
-              label="サイズ (px)"
-              defaultValue={activeItem.size}
+            <Controller
+              name="size"
+              control={control}
+              rules={{ required: true, min: 10 }}
+              render={({ field, formState: { errors } }) => (
+                <TextField
+                  required
+                  type="number"
+                  label="サイズ (px)"
+                  {...field}
+                  error={!!errors.size}
+                  slotProps={{
+                    htmlInput: { min: 10 },
+                  }}
+                />
+              )}
             />
           </Box>
         </Stack>

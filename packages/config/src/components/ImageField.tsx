@@ -5,42 +5,58 @@ import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import Select from "@mui/material/Select"
 import Stack from "@mui/material/Stack"
+import { forwardRef } from "react"
 
 import type { SelectChangeEvent } from "@mui/material/Select"
+import type { FocusEvent, ForwardedRef, SyntheticEvent } from "react"
 
 export type ImageFieldProps = {
+  name?: string
   required?: boolean
   fullWidth?: boolean
   label?: string
   helperText?: string
   value?: string
   defaultValue?: string
+  error?: boolean
+  disabled?: boolean
   onChange?: (event: SelectChangeEvent) => void
-  onOpen?: (event: object) => void
+  onBlur?: (event: FocusEvent) => void
+  onOpen?: (event: SyntheticEvent) => void
   images: string[]
 }
 
-export default function ImageField({
-  required,
-  fullWidth,
-  label,
-  helperText,
-  value,
-  defaultValue,
-  onChange,
-  onOpen,
-  images,
-}: ImageFieldProps) {
+export default forwardRef(function ImageField(
+  {
+    name,
+    required,
+    fullWidth,
+    label,
+    helperText,
+    value,
+    error,
+    disabled,
+    onChange,
+    onBlur,
+    onOpen,
+    images,
+  }: ImageFieldProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const size = 36
 
   return (
     <FormControl required={required} fullWidth={fullWidth}>
       {label && <InputLabel>{label}</InputLabel>}
       <Select
+        name={name}
         label={label}
         value={value}
-        defaultValue={defaultValue}
+        error={error}
+        disabled={disabled}
+        ref={ref}
         onChange={onChange}
+        onBlur={onBlur}
         onOpen={onOpen}
       >
         {images.map((image) => (
@@ -63,4 +79,4 @@ export default function ImageField({
       {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   )
-}
+})

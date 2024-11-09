@@ -90,6 +90,24 @@ export const deleteItemAtom = atom(
   },
 )
 
+export const editItemAtom = atom(
+  null,
+  async (get, set, targetItem: WordPrettyItem) => {
+    const items = get(itemsAtom)
+    const newItem: WordPrettyItem = {
+      ...targetItem,
+      pattern: targetItem.pattern.trim(),
+    }
+
+    set(
+      itemsAtom,
+      items.map((item) => (item.id === newItem.id ? newItem : item)),
+    )
+    set(activeItemAtom, newItem)
+    set(savePluginConfigAtom)
+  },
+)
+
 export default function useWordPrettyStore() {
   const wordPretty = useAtomValue(wordPrettyAtom)
   const items = useAtomValue(itemsAtom)
@@ -100,6 +118,7 @@ export default function useWordPrettyStore() {
   const toggleItem = useSetAtom(toggleItemAtom)
   const copyItem = useSetAtom(copyItemAtom)
   const deleteItem = useSetAtom(deleteItemAtom)
+  const editItem = useSetAtom(editItemAtom)
 
   return useMemo(
     () => ({
@@ -112,6 +131,7 @@ export default function useWordPrettyStore() {
       toggleItem,
       copyItem,
       deleteItem,
+      editItem,
     }),
     [
       wordPretty,
@@ -123,6 +143,7 @@ export default function useWordPrettyStore() {
       toggleItem,
       copyItem,
       deleteItem,
+      editItem,
     ],
   )
 }
