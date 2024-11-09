@@ -1,12 +1,10 @@
-import { Window } from "happy-dom"
-
-import type { Document, HTMLElement, Node } from "happy-dom"
+import { JSDOM } from "jsdom"
 
 const URL_PATTERN = /https?:\/\/[\w/:%#$&?()~.=+@,-]+/g
 
 export function createDocument(text: string): Document {
-  const window = new Window()
-  const document = window.document
+  const dom = new JSDOM(text)
+  const document = dom.window.document
   document.body.innerHTML = text
   return document
 }
@@ -51,7 +49,7 @@ export function updateNodeWithHtmlContent(
 
 export function wrapUrlPattern(document: Document) {
   execFuncOnTextNode(document, (child) => {
-    let content = child.textContent
+    let content = child.textContent ?? ""
     content = content.replaceAll(URL_PATTERN, (url) => {
       return `<span>${url}</span>`
     })
@@ -61,7 +59,7 @@ export function wrapUrlPattern(document: Document) {
 
 export function wrapTextNode(document: Document) {
   execFuncOnTextNode(document, (child) => {
-    let content = child.textContent
+    let content = child.textContent ?? ""
     content = `<span>${content}</span>`
     updateNodeWithHtmlContent(document, child, content)
   })

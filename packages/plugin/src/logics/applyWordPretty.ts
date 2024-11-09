@@ -3,25 +3,27 @@ import {
   createDocument,
   execFuncOnElementNode,
   execFuncOnTextNode,
+  updateNodeWithHtmlContent,
   wrapTextNode,
   wrapUrlPattern,
 } from "../utils/dom"
 
 import type { PluginConfig, WordPrettyItem } from "@wordpretty/shared/lib/types"
-import type { Document } from "happy-dom"
 
-export const createImageTag = (item: WordPrettyItem): string => {
+export function createImageTag(item: WordPrettyItem): string {
   const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
   return `<img src="${src}" alt="" class="image" style="width: ${item.size}px; height: auto; margin-block: 2px;">`
 }
 
 export function replaceItemPattern(document: Document, item: WordPrettyItem) {
   execFuncOnTextNode(document, (child) => {
-    const pattern = new RegExp(item.pattern.replaceAll("\n", "|"), "g")
-    let content = child.textContent
-    content = content.replaceAll(pattern, (p) => {
+    const patterns = item.pattern.split("\n").map((pattern) => `(${pattern})`)
+    const p = new RegExp(patterns.join("|"), "g")
+    let content = child.textContent ?? ""
+    content = content.replaceAll(p, (_) => {
       return createImageTag(item)
     })
+    updateNodeWithHtmlContent(document, child, content)
   })
 }
 

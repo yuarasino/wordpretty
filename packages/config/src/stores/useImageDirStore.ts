@@ -22,7 +22,7 @@ export const openImageDirAtom = atom(null, async (get, set) => {
 })
 
 export const readImageDirAtom = atom(null, async (get, set) => {
-  const m_action = JSON.stringify({ type: "open" } as ImageDirAction)
+  const m_action = JSON.stringify({ type: "read" } as ImageDirAction)
   let m_result: string
   if (import.meta.env.PROD) {
     const res = await fetch(consts.PLUGIN_API_EP, {

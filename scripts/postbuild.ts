@@ -14,7 +14,7 @@ function renderSync(src: string, dst: string) {
   writeFileSync(dst, text, { encoding: "utf-8" })
 }
 
-function build() {
+function postBuild() {
   removeSync("dist")
   mkdirSync("dist")
   copySync("packages/config/dist", "dist")
@@ -22,4 +22,4 @@ function build() {
   renderSync("scripts/README.temp", "dist/README.txt")
 }
 
-build()
+postBuild()

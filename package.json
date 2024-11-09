@@ -5,11 +5,14 @@
   "scripts": {
     "dev": "bun run --filter '*' dev",
     "build": "bun run --filter '*' build",
-    "postbuild": "bun run scripts/postbuild.ts",
+    "test": "bun run --filter '*' test",
+    "postbuild": "bun run scripts/postBuild.ts",
+    "setuprelease": "bun run scripts/setupRelease.ts",
     "lint": "bun x --bun biome ci",
     "fix": "bun x --bun biome check --fix --unsafe"
   },
   "dependencies": {
+    "@actions/core": "^1.11.1",
     "@wordpretty/shared": "workspace:*",
     "fs-extra": "^11.2.0",
     "mustache": "^4.2.0"
