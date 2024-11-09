@@ -6,9 +6,11 @@
   },
   "dependencies": {
     "@onecomme.com/onesdk": "^6.0.0",
-    "@wordpretty/shared": "workspace:*"
+    "@wordpretty/shared": "workspace:*",
+    "happy-dom": "^15.11.0"
   },
   "devDependencies": {
+    "rollup-plugin-node-externals": "^7.1.3",
     "vite": "^5.4.10"
   }
 }

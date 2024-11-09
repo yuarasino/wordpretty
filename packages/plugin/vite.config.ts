@@ -1,3 +1,4 @@
+import { nodeExternals } from "rollup-plugin-node-externals"
 import { defineConfig } from "vite"
 
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
       output: {
         entryFileNames: "[name].js",
       },
+      plugins: [nodeExternals({ deps: false })],
     },
   },
 })
