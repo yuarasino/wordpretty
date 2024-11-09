@@ -1,12 +1,9 @@
 import * as consts from "@wordpretty/shared/lib/consts"
+import { deepCopy } from "@wordpretty/shared/lib/utils"
 import { atom, useAtomValue, useSetAtom } from "jotai"
 import { useMemo } from "react"
 
-import type { PluginConfig } from "@wordpretty/shared/lib/types"
-
-export const pluginConfigAtom = atom({
-  wordPretty: { items: [] },
-} as PluginConfig)
+export const pluginConfigAtom = atom(deepCopy(consts.DEFAULT_CONFIG))
 
 export const loadPluginConfigAtom = atom(null, async (get, set) => {
   let m_data: string
@@ -17,7 +14,7 @@ export const loadPluginConfigAtom = atom(null, async (get, set) => {
     m_data = json.response
   } else {
     // 開発環境ではブラウザのLocalStorageから取得
-    m_data = localStorage.getItem("config") ?? ""
+    m_data = localStorage.getItem("pluginConfig") ?? ""
   }
   if (m_data) {
     set(pluginConfigAtom, JSON.parse(m_data))
@@ -31,7 +28,7 @@ export const savePluginConfigAtom = atom(null, async (get, set) => {
     await fetch(consts.PLUGIN_API_EP, { method: "POST", body: m_data })
   } else {
     // 開発環境ではブラウザのLocalStorageに保存
-    localStorage.setItem("config", m_data)
+    localStorage.setItem("pluginConfig", m_data)
   }
 })
 

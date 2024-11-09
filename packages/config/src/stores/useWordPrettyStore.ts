@@ -1,3 +1,4 @@
+import * as consts from "@wordpretty/shared/lib/consts"
 import { atom, useAtomValue, useSetAtom } from "jotai"
 import { focusAtom } from "jotai-optics"
 import { nanoid } from "nanoid"
@@ -19,12 +20,8 @@ export const activeItemAtom = atom(undefined as WordPrettyItem | undefined)
 export const addItemAtom = atom(null, async (get, set) => {
   const items = get(itemsAtom)
   const newItem: WordPrettyItem = {
-    enabled: true,
+    ...consts.DEFAULT_ITEM,
     id: nanoid(8),
-    name: "サンプル",
-    pattern: "ふぐ\nフグ\n🐡",
-    image: "fugu.png",
-    size: 36,
   }
   set(itemsAtom, [newItem, ...items])
   set(activeItemAtom, newItem)

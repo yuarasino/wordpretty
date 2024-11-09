@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "bun x --bun vite dev",
-    "build": "bun x --bun vite build"
+    "build": "bun x --bun vite build",
+    "test": "bun test --preload ./test/preload.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
@@ -23,6 +24,9 @@
     "react-hook-form": "^7.53.2"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^15.11.0",
+    "@testing-library/react": "^16.0.1",
+    "@types/bun": "^1.1.13",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
