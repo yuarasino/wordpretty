@@ -1,0 +1,37 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: setup bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - name: exec build
+      run: bun run build
+    - name: setup release
+      run: bun run setuprelease
+      id: release
+    - name: rename dist
+      run: mv dist ${{ steps.release.outputs.name }}
+    - name: zip dist
+      run: zip -r ${{ steps.release.outputs.file }} ${{ steps.release.outputs.name }}
+    - name: create release
+      uses: softprops/action-gh-release@v2
+      with:
+        draft: true
+        name: ${{ steps.release.outputs.version }}
+        tag_name: ${{ steps.release.outputs.version }}
+        body: ${{ steps.release.outputs.version }}
+        files: ${{ steps.release.outputs.file }}

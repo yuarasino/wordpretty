@@ -6,12 +6,12 @@ describe("useImageDirStore/openImageDir", () => {
   test("正常に実行できるか", () => {
     const { result } = renderHook(() => useImageDirStore())
 
-    const spyConsoleLog = spyOn(console, "log")
+    const consoleLogSpy = spyOn(console, "log")
     act(() => {
       result.current.openImageDir()
     })
 
-    expect(spyConsoleLog).toHaveBeenCalledWith("open")
+    expect(consoleLogSpy).toHaveBeenCalledWith("open")
   })
 })
 

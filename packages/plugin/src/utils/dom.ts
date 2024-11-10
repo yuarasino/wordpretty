@@ -3,6 +3,7 @@ import { JSDOM } from "jsdom"
 const URL_PATTERN = /https?:\/\/[\w/:%#$&?()~.=+@,-]+/g
 
 export function createDocument(text: string): Document {
+  // bunでhappy-domが動かないので代わりにjsdomを使う
   const dom = new JSDOM(text)
   const document = dom.window.document
   document.body.innerHTML = text

@@ -20,3 +20,5 @@ export const DEFAULT_ITEM: WordPrettyItem = {
 export const DEFAULT_CONFIG: PluginConfig = {
   wordPretty: { items: [DEFAULT_ITEM] },
 }
+
+export const CONFIG_LS_KEY = "config"

@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: setup bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+    - name: exec install
+      run: bun install
+    - name: exec lint
+      run: bun run lint
+    - name: exec test
+      run: bun run test

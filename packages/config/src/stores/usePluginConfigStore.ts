@@ -14,7 +14,7 @@ export const loadPluginConfigAtom = atom(null, async (get, set) => {
     m_data = json.response
   } else {
     // 開発環境ではブラウザのLocalStorageから取得
-    m_data = localStorage.getItem("pluginConfig") ?? ""
+    m_data = localStorage.getItem(consts.CONFIG_LS_KEY) ?? ""
   }
   if (m_data) {
     set(pluginConfigAtom, JSON.parse(m_data))
@@ -28,7 +28,7 @@ export const savePluginConfigAtom = atom(null, async (get, set) => {
     await fetch(consts.PLUGIN_API_EP, { method: "POST", body: m_data })
   } else {
     // 開発環境ではブラウザのLocalStorageに保存
-    localStorage.setItem("pluginConfig", m_data)
+    localStorage.setItem(consts.CONFIG_LS_KEY, m_data)
   }
 })
 
