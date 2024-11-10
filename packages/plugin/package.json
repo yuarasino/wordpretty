@@ -8,11 +8,10 @@
   "dependencies": {
     "@onecomme.com/onesdk": "^6.0.0",
     "@wordpretty/shared": "workspace:*",
-    "jsdom": "^25.0.1"
+    "happy-dom": "^15.11.0"
   },
   "devDependencies": {
     "@types/bun": "^1.1.13",
-    "@types/jsdom": "^21.1.7",
     "rollup-plugin-node-externals": "^7.1.3",
     "vite": "^5.4.10"
   }

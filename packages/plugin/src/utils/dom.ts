@@ -1,11 +1,11 @@
-import { JSDOM } from "jsdom"
+import { Window } from "happy-dom"
+
+import type { Document, HTMLElement, Node } from "happy-dom"
 
 const URL_PATTERN = /https?:\/\/[\w/:%#$&?()~.=+@,-]+/g
 
 export function createDocument(text: string): Document {
-  // bunでhappy-domが動かないので代わりにjsdomを使う
-  const dom = new JSDOM(text)
-  const document = dom.window.document
+  const document = new Window().document
   document.body.innerHTML = text
   return document
 }
