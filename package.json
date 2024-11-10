@@ -6,8 +6,8 @@
     "dev": "bun run --filter '*' dev",
     "build": "bun run --filter '*' build",
     "test": "bun run --filter '*' test",
-    "postbuild": "bun run scripts/postBuild.ts",
-    "setuprelease": "bun run scripts/setupRelease.ts",
+    "postbuild": "bun run ./scripts/postBuild.ts",
+    "setuprelease": "bun run ./scripts/setupRelease.ts",
     "lint": "bun x --bun biome ci",
     "fix": "bun x --bun biome check --fix --unsafe"
   },

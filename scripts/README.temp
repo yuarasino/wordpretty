@@ -1,6 +1,77 @@
-わんコメプラグイン「{{PLUGIN_NAME_JA}}」
-onecomme plugin "{{PLUGIN_NAME}}"
+わんコメプラグイン「{{ PLUGIN_NAME_JA }}」
+onecomme plugin "{{ PLUGIN_NAME }}"
 
-バージョン: v{{PLUGIN_VERSION}}
+バージョン: v{{ PLUGIN_VERSION }}
+作者: {{ PLUGIN_AUTHOR_JA }}
 
-作者: {{PLUGIN_AUTHOR_JA}}
+販売ページ: https://yuarasino.booth.pm/items/6275056
+ソースコード: https://github.com/yuarasino/wordpretty
+
+
+◆ 利用方法 ◆
+
+・わんコメのv5.2以上をインストールする。
+　動かない場合はv6.0以上を使ってみてください。
+
+・わんコメ公式の手順に従ってプラグインを有効化する。
+  https://onecomme.com/docs/feature/plugins
+
+・設定ページを開いて置き換えの設定をする
+  {{{ PLUGIN_WEB_EP }}}/index.html
+
+  もしくは、 USAGE.png にわんコメから開く方法が載っています。
+
+・設定の仕方はわんコメ公式の「WordParty」を参考にしてください。
+  https://onecomme.com/docs/feature/wordparty-editor
+
+
+
+◆ 制限事項 ◆
+
+  ・コメント欄に画像を表示するためには、プラグインフォルダ内の
+    `images` フォルダに画像を配置する必要があります。
+
+  ・画像フォルダ内のサブフォルダや名前に全角文字・記号が入っていると
+    画像が表示できないことがあります。
+
+    その場合は、半角英数字だけになるように名前を変えてみてください。
+
+
+
+◆ 利用規約 ◆
+
+【利用できる範囲】
+
+・個人、法人、商用、非商用問わず利用可能です。
+
+
+【クレジット表記】
+
+・クレジット表記は不要です。
+・もし以下のような感じで概要欄などに入れてくれたらすごく喜びます。
+
+　コメント欄のイラスト表示「WordPretty」 https://yuarasino.booth.pm/items/6275056
+
+
+【禁止事項】
+
+・そのまま再配布や販売をすること。
+・盗用や自作発言をすること。
+
+
+【免責事項】
+・本プラグインを使用したことによって生じた損害・損失に対して開発者は一切責任を負いません。
+
+
+
+◆ 問い合わせ ◆
+
+・問い合わせはX/TwitterのDMまでお願いします。
+  https://x.com/yuarasino
+
+・プログラマーの方はGitHubのIssueでも受け付けています。
+  https://github.com/yuarasino/wordpretty
+
+・もし普段使ってるテンプレートと相性が悪かったり、特別にカスタマイズしてほしいことがあった場合は、気軽に問合せしてください。
+
+・できるだけ対応する予定ですが、BOOTHの支援版を購入してもらえたら優先で対応します。
