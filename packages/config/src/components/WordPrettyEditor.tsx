@@ -6,10 +6,11 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import useImageDirStore from "../stores/useImageDirStore"
 import useWordPrettyStore from "../stores/useWordPrettyStore"
+import CompleteDialog from "./CompleteDialog"
 import ImageField from "./ImageField"
 
 import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
@@ -17,6 +18,8 @@ import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
 export default function WordPrettyEditor() {
   const { activeItem, editItem } = useWordPrettyStore()
   const { images, openImageDir, readImageDir } = useImageDirStore()
+
+  const [open, setOpen] = useState(false)
 
   const { control, reset, handleSubmit } = useForm<WordPrettyItem>({
     defaultValues: {
@@ -31,6 +34,7 @@ export default function WordPrettyEditor() {
 
   const onEditItem = (data: WordPrettyItem) => {
     editItem(data)
+    setOpen(true)
   }
 
   useEffect(() => {
@@ -58,6 +62,12 @@ export default function WordPrettyEditor() {
         >
           保存
         </Button>
+        <CompleteDialog
+          title="完了"
+          content="設定を保存しました。"
+          open={open}
+          onComplete={() => setOpen(false)}
+        />
       </Toolbar>
       {activeItem && (
         <Stack spacing={3} padding={3}>

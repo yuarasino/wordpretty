@@ -9,7 +9,7 @@ import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
 
 function createImageTagWithMargin(item: WordPrettyItem): string {
   const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
-  return `<img src="${src}" alt="" class="image" style="width: ${item.size}px; height: auto; margin-block: 2px; margin-right: 4px;">`
+  return `<img src="${src}" alt="" class="image" style="width: auto; height: ${item.size}px; margin-block: 2px; margin-right: 4px;">`
 }
 
 function createSpanTag(content: string): string {

@@ -12,7 +12,7 @@ import type { PluginConfig, WordPrettyItem } from "@wordpretty/shared/lib/types"
 
 export function createImageTag(item: WordPrettyItem): string {
   const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
-  return `<img src="${src}" alt="" class="image" style="width: ${item.size}px; height: auto; margin-block: 2px;">`
+  return `<img src="${src}" alt="" class="image" style="width: auto; height: ${item.size}px; margin-block: 2px;">`
 }
 
 export function replaceItemPattern(document: Document, item: WordPrettyItem) {
