@@ -9,6 +9,7 @@ import {
 } from "../utils/dom"
 
 import type { PluginConfig, WordPrettyItem } from "@wordpretty/shared/lib/types"
+import type { Document } from "happy-dom"
 
 export function createImageTag(item: WordPrettyItem): string {
   const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
@@ -16,6 +17,7 @@ export function createImageTag(item: WordPrettyItem): string {
 }
 
 export function replaceItemPattern(document: Document, item: WordPrettyItem) {
+  if (!item.enabled) return
   execFuncOnTextNode(document, (child) => {
     const patterns = item.pattern.split("\n").map((pattern) => `(${pattern})`)
     const p = new RegExp(patterns.join("|"), "g")
