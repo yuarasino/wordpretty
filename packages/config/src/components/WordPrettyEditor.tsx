@@ -126,7 +126,7 @@ export default function WordPrettyEditor() {
                 }
               >
                 まず画像フォルダに画像を入れてください！
-                プラグインのフォルダ内の`images`フォルダが画像フォルダです。
+                プラグインフォルダ内の`images`フォルダが画像フォルダです。
               </Alert>
             </Box>
             <Box>
@@ -139,7 +139,7 @@ export default function WordPrettyEditor() {
                   <ImageField
                     required
                     label="画像 (jpg, png, gif)"
-                    helperText="ファイル名に全角文字や記号が入っていると画像が出てこないときがあります。"
+                    helperText="ファイル名に全角文字や記号が入っていると画像が出てこないことがあります。"
                     {...field}
                     error={!!errors.image}
                     onOpen={() => readImageDir()}

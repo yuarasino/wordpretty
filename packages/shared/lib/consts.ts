@@ -22,3 +22,7 @@ export const DEFAULT_CONFIG: PluginConfig = {
 }
 
 export const CONFIG_LS_KEY = "config"
+
+export const BOOTH_URL = "https://yuarasino.booth.pm/items/6275056"
+export const GITHUB_URL = "https://github.com/yuarasino/wordpretty"
+export const TWITTER_URL = "https://x.com/yuarasino"
