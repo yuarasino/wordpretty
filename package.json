@@ -9,7 +9,7 @@
     "postbuild": "bun run ./scripts/postbuild.ts",
     "infobuild": "bun run ./scripts/infobuild.ts",
     "lint": "bun x --bun biome ci",
-    "fix": "bun x --bun biome check --fix --unsafe"
+    "fmt": "bun x --bun biome check --fix --unsafe"
   },
   "packageManager": "bun@1.1.29",
   "dependencies": {

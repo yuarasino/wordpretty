@@ -1,67 +1,84 @@
-import { Window } from "happy-dom"
+import { render } from "dom-serializer"
+import { ElementType, parseDocument } from "htmlparser2"
 
-import type { Document, HTMLElement, Node } from "happy-dom"
+import type { Element, Text } from "domhandler"
 
 const URL_PATTERN = /https?:\/\/[\w/:%#$&?()~.=+@,-]+/g
 
-export function createDocument(text: string): Document {
-  const document = new Window().document
-  document.body.innerHTML = text
-  return document
-}
-
-export function execFuncOnElementNode(
-  document: Document,
-  func: (child: HTMLElement) => void,
-) {
-  const children = Array.from(document.body.childNodes)
-  for (const child of children) {
-    if (child.nodeType === document.ELEMENT_NODE) {
-      func(child as HTMLElement)
-    }
-  }
-}
-
-export function execFuncOnTextNode(
-  document: Document,
-  func: (child: Node) => void,
-) {
-  const children = Array.from(document.body.childNodes)
-  for (const child of children) {
-    if (child.nodeType === document.TEXT_NODE) {
-      func(child)
-    }
-  }
-}
-
-export function updateNodeWithHtmlContent(
-  document: Document,
-  child: Node,
-  content: string,
-) {
-  const div = document.createElement("div")
-  div.innerHTML = content
-  const nodes = Array.from(div.childNodes)
-  for (const node of nodes) {
-    document.body.insertBefore(node, child)
-  }
-  document.body.removeChild(child)
-}
-
-export function wrapUrlPattern(document: Document) {
-  execFuncOnTextNode(document, (child) => {
-    let content = child.textContent ?? ""
-    content = content.replaceAll(URL_PATTERN, (url) => {
-      return `<span>${url}</span>`
+/**
+ * テキスト中のURLをspanタグでラップする
+ * @param text 対象テキスト
+ * @returns 処理済みテキスト
+ */
+export function wrapUrlPattern(text: string): string {
+  text = execFuncOnTextNode(text, (child) => {
+    return child.data.replaceAll(URL_PATTERN, (url) => {
+      return createSpan(url)
     })
-    updateNodeWithHtmlContent(document, child, content)
   })
+  return text
 }
 
-export function wrapTextNode(document: Document) {
-  execFuncOnTextNode(document, (child) => {
-    let content = child.textContent ?? ""
-    content = `<span>${content}</span>`
-    updateNodeWithHtmlContent(document, child, content)
+/**
+ * テキスト中のテキストノードをspanタグでラップする
+ * @param text 対象テキスト
+ * @returns 処理済みテキスト
+ */
+export function wrapTextNode(text: string): string {
+  text = execFuncOnTextNode(text, (child) => {
+    return createSpan(child.data)
   })
+  return text
+}
+
+/**
+ * テキスト中のタグ以外の文字列に処理をする
+ * @param text 対象テキスト
+ * @returns 処理済みテキスト
+ */
+export function execFuncOnTextNode(
+  text: string,
+  func: (child: Text) => string,
+): string {
+  // imgタグのsrcなどをラップしないようにDOMを考慮する
+  const document = parseDocument(text, { decodeEntities: false })
+  text = ""
+  for (const child of document.childNodes) {
+    if (child.type === ElementType.Text) {
+      // テキストノードの場合のみ処理をする
+      text += func(child)
+    } else {
+      // エレメントノードの場合はそのままにする
+      text += render(child, { encodeEntities: false })
+    }
+  }
+  return text
+}
+
+/**
+ * テキスト中のタグに処理をする
+ * @param text 対象テキスト
+ * @returns 処理済みテキスト
+ */
+export function execFuncOnElementNode(
+  text: string,
+  func: (child: Element) => string,
+): string {
+  // imgタグのsrcなどをラップしないようにDOMを考慮する
+  const document = parseDocument(text, { decodeEntities: false })
+  text = ""
+  for (const child of document.childNodes) {
+    if (child.type === ElementType.Tag) {
+      // エレメントノードの場合のみ処理をする
+      text += func(child)
+    } else {
+      // テキストノードの場合はそのままにする
+      text += render(child, { encodeEntities: false })
+    }
+  }
+  return text
+}
+
+export function createSpan(content: string): string {
+  return `<span>${content}</span>`
 }

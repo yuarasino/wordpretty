@@ -4,9 +4,9 @@ onecomme plugin "{{ PLUGIN_NAME }}"
 バージョン: v{{ PLUGIN_VERSION }}
 作者: {{ PLUGIN_AUTHOR_JA }}
 
-販売ページ: https://yuarasino.booth.pm/items/6275056
-ソースコード: https://github.com/yuarasino/wordpretty
-作者X/Twitter: https://x.com/yuarasino
+販売ページ: {{{ BOOTH_URL }}}
+ソースコード: {{{ GITHUB_URL }}}
+作者X/Twitter: {{{ X_URL }}}
 
 
 
@@ -19,7 +19,7 @@ onecomme plugin "{{ PLUGIN_NAME }}"
   https://onecomme.com/docs/feature/plugins
 
 ・設定ページを開いて置き換えの設定をする
-  {{{ PLUGIN_WEB_EP }}}/index.html
+  {{{ PLUGIN_URL }}}
 
   もしくは、`USAGE.png`にわんコメから開く方法が載っています。
 
@@ -42,6 +42,7 @@ onecomme plugin "{{ PLUGIN_NAME }}"
   その場合は、半角英数字だけになるように名前を変えてみてください。
 
 
+
 ◆ 利用規約 ◆
 
 【利用できる範囲】
@@ -54,7 +55,7 @@ onecomme plugin "{{ PLUGIN_NAME }}"
 ・クレジット表記は不要です。
 ・もし以下のような感じで概要欄などに入れてくれたらすごく喜びます。
 
-　コメント欄のイラスト表示「WordPretty」 https://yuarasino.booth.pm/items/6275056
+　コメント欄のイラスト表示「WordPretty」 {{{ BOOTH_URL }}}
 
 
 【禁止事項】
@@ -84,9 +85,9 @@ onecomme plugin "{{ PLUGIN_NAME }}"
 ◆ お問い合わせ ◆
 
 ・問い合わせはX/TwitterのDMまでお願いします。
-  https://x.com/yuarasino
+  {{{ X_URL }}}
 
 ・プログラマーの方はGitHubのIssueでも受け付けています。
-  https://github.com/yuarasino/wordpretty
+  {{{ GITHUB_URL }}}
 
 ・もし普段使ってるテンプレートと相性が悪かったり、特別にカスタマイズしてほしいことがあった場合は、気軽に問合せしてください。

@@ -1,59 +1,61 @@
 import * as consts from "@wordpretty/core/src/consts"
+import { render } from "dom-serializer"
+import { DomUtils } from "htmlparser2"
 import {
-  createDocument,
   execFuncOnElementNode,
   execFuncOnTextNode,
-  updateNodeWithHtmlContent,
   wrapTextNode,
   wrapUrlPattern,
 } from "../utils/dom"
 
 import type { PluginConfig, WordPrettyItem } from "@wordpretty/core/src/types"
-import type { Document } from "happy-dom"
-
-export function createImageTag(item: WordPrettyItem): string {
-  const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
-  return `<img src="${src}" alt="" class="image" style="width: auto; height: ${item.size}px; margin-block: 2px;">`
-}
-
-export function replaceItemPattern(document: Document, item: WordPrettyItem) {
-  if (!item.enabled) return
-  execFuncOnTextNode(document, (child) => {
-    const patterns = item.pattern.split("\n").map((pattern) => `(${pattern})`)
-    const p = new RegExp(patterns.join("|"), "g")
-    let content = child.textContent ?? ""
-    content = content.replaceAll(p, (_) => {
-      return createImageTag(item)
-    })
-    updateNodeWithHtmlContent(document, child, content)
-  })
-}
-
-export function addMarginStyle(document: Document) {
-  execFuncOnElementNode(document, (child) => {
-    const sibling = child.nextElementSibling
-    if (sibling) {
-      const c = child.classList.contains("image")
-      const s = sibling.classList.contains("image")
-      if ((c && !s) || (!c && s)) {
-        child.style.marginRight = "4px"
-      }
-    }
-  })
-}
 
 export default function applyWordPretty(
   text: string,
   config: PluginConfig,
 ): string {
-  const document = createDocument(text)
-  wrapUrlPattern(document)
+  text = wrapUrlPattern(text)
 
   for (const item of config.wordPretty.items) {
-    replaceItemPattern(document, item)
+    text = replaceItemPattern(text, item)
   }
 
-  wrapTextNode(document)
-  addMarginStyle(document)
-  return document.body.innerHTML
+  text = wrapTextNode(text)
+  text = addImageMargin(text)
+  return text
+}
+
+export function replaceItemPattern(text: string, item: WordPrettyItem): string {
+  if (!item.enabled) return text
+  text = execFuncOnTextNode(text, (child) => {
+    const patterns = item.pattern.split("\n").map((pattern) => `(${pattern})`)
+    const ip = new RegExp(patterns.join("|"), "g")
+    return child.data.replaceAll(ip, (_) => {
+      return createImg(item)
+    })
+  })
+  return text
+}
+
+export function addImageMargin(text: string): string {
+  text = execFuncOnElementNode(text, (child) => {
+    const sibling = DomUtils.nextElementSibling(child)
+    if (sibling) {
+      const cc = child.attribs.class
+      const sc = sibling.attribs.class
+      const cb = cc ? cc.includes("illust") : false
+      const sb = sc ? sc.includes("illust") : false
+      if ((cb && !sb) || (!cb && sb)) {
+        const cs = child.attribs.style
+        child.attribs.style = `${cs ? cs : ""}margin-inline-end:4px;`
+      }
+    }
+    return render(child, { encodeEntities: false })
+  })
+  return text
+}
+
+export function createImg(item: WordPrettyItem): string {
+  const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
+  return `<img src="${src}" alt="${item.name}" class="illust" style="width:auto;height:${item.size}px;margin-block:2px;">`
 }
