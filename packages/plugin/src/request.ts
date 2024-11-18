@@ -10,7 +10,7 @@ import type {
   ImageDirAction,
   ImageDirResult,
   PluginConfig,
-} from "@wordpretty/shared/lib/types"
+} from "@wordpretty/core/src/types"
 
 async function loadPluginConfig(
   req: PluginRequest,

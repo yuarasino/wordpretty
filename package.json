@@ -6,15 +6,15 @@
     "dev": "bun run --filter '*' dev",
     "build": "bun run --filter '*' build",
     "test": "bun run --filter '*' test",
-    "postbuild": "bun run ./scripts/postBuild.ts",
-    "setuprelease": "bun run ./scripts/setupRelease.ts",
+    "postbuild": "bun run ./scripts/postbuild.ts",
+    "infobuild": "bun run ./scripts/infobuild.ts",
     "lint": "bun x --bun biome ci",
     "fix": "bun x --bun biome check --fix --unsafe"
   },
   "packageManager": "bun@1.1.29",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@wordpretty/shared": "workspace:*",
+    "@wordpretty/core": "workspace:*",
     "fs-extra": "^11.2.0",
     "mustache": "^4.2.0"
   },

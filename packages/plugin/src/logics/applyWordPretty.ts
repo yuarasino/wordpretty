@@ -1,4 +1,4 @@
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 import {
   createDocument,
   execFuncOnElementNode,
@@ -8,7 +8,7 @@ import {
   wrapUrlPattern,
 } from "../utils/dom"
 
-import type { PluginConfig, WordPrettyItem } from "@wordpretty/shared/lib/types"
+import type { PluginConfig, WordPrettyItem } from "@wordpretty/core/src/types"
 import type { Document } from "happy-dom"
 
 export function createImageTag(item: WordPrettyItem): string {

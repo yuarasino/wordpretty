@@ -1,7 +1,7 @@
 import { describe, expect, spyOn, test } from "bun:test"
 import { act, renderHook } from "@testing-library/react"
-import * as consts from "@wordpretty/shared/lib/consts"
-import { deepCopy } from "@wordpretty/shared/lib/utils"
+import * as consts from "@wordpretty/core/src/consts"
+import { deepCopy } from "@wordpretty/core/src/utils"
 import usePluginConfigStore from "../../src/stores/usePluginConfigStore"
 
 describe("usePluginConfigStore/loadPluginConfig", () => {

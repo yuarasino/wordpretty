@@ -1,3 +1,3 @@
 {
-  "extends": ["@wordpretty/shared/tsconfig.json"]
+  "extends": ["@wordpretty/core/tsconfig.json"]
 }

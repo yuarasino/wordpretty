@@ -15,7 +15,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
-    "@wordpretty/shared": "workspace:*",
+    "@wordpretty/core": "workspace:*",
     "jotai": "^2.10.1",
     "jotai-optics": "^0.4.0",
     "nanoid": "^5.0.8",

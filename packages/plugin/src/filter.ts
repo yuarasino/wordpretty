@@ -2,7 +2,7 @@ import applyWordPretty from "./logics/applyWordPretty"
 
 import type { Comment } from "@onecomme.com/onesdk/types/Comment"
 import type { PluginAPI } from "@onecomme.com/onesdk/types/Plugin"
-import type { PluginConfig } from "@wordpretty/shared/lib/types"
+import type { PluginConfig } from "@wordpretty/core/src/types"
 
 export default async function filter(
   comment: Comment,

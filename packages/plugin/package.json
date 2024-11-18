@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@onecomme.com/onesdk": "^6.0.0",
-    "@wordpretty/shared": "workspace:*",
+    "@wordpretty/core": "workspace:*",
     "happy-dom": "^15.11.0"
   },
   "devDependencies": {

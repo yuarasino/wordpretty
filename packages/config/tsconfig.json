@@ -1,5 +1,5 @@
 {
-  "extends": ["@wordpretty/shared/tsconfig.json"],
+  "extends": ["@wordpretty/core/tsconfig.json"],
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "jsx": "react-jsx"

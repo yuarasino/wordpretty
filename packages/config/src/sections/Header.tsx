@@ -5,7 +5,7 @@ import AppBar from "@mui/material/AppBar"
 import IconButton from "@mui/material/IconButton"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 
 export default function Header() {
   return (

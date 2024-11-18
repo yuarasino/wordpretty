@@ -1,5 +1,5 @@
 import { setOutput } from "@actions/core"
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 
 function setupRelease() {
   setOutput("name", consts.PLUGIN_NAME)

@@ -1,4 +1,4 @@
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import App from "./App.tsx"

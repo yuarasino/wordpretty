@@ -1,9 +1,9 @@
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 import filter from "./filter"
 import request from "./request"
 
 import type { OnePlugin, PluginAPI } from "@onecomme.com/onesdk/types/Plugin"
-import type { PluginConfig } from "@wordpretty/shared/lib/types"
+import type { PluginConfig } from "@wordpretty/core/src/types"
 
 let m_api: PluginAPI
 

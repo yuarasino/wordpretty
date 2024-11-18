@@ -13,7 +13,7 @@ import useWordPrettyStore from "../stores/useWordPrettyStore"
 import CompleteDialog from "./CompleteDialog"
 import ImageField from "./ImageField"
 
-import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
+import type { WordPrettyItem } from "@wordpretty/core/src/types"
 
 export default function WordPrettyEditor() {
   const { activeItem, editItem } = useWordPrettyStore()

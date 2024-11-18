@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test"
-import * as consts from "@wordpretty/shared/lib/consts"
-import { deepCopy } from "@wordpretty/shared/lib/utils"
+import * as consts from "@wordpretty/core/src/consts"
+import { deepCopy } from "@wordpretty/core/src/utils"
 import applyWordPretty, {
   createImageTag,
 } from "../../src/logics/applyWordPretty"
 
-import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
+import type { WordPrettyItem } from "@wordpretty/core/src/types"
 
 function createImageTagWithMargin(item: WordPrettyItem): string {
   const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`

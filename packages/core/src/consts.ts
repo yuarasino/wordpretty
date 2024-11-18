@@ -8,6 +8,11 @@ export const PLUGIN_AUTHOR = "yuarasino"
 export const PLUGIN_AUTHOR_JA = "新篠ゆう"
 export const PLUGIN_WEB_EP = `http://localhost:11180/plugins/${PLUGIN_UID}`
 export const PLUGIN_API_EP = `http://localhost:11180/api/plugins/${PLUGIN_UID}`
+export const PLUGIN_URL = `${PLUGIN_WEB_EP}/index.html`
+
+export const BOOTH_URL = "https://yuarasino.booth.pm/items/6275056"
+export const GITHUB_URL = "https://github.com/yuarasino/wordpretty"
+export const TWITTER_URL = "https://x.com/yuarasino"
 
 export const DEFAULT_ITEM: WordPrettyItem = {
   enabled: true,
@@ -22,7 +27,3 @@ export const DEFAULT_CONFIG: PluginConfig = {
 }
 
 export const CONFIG_LS_KEY = "config"
-
-export const BOOTH_URL = "https://yuarasino.booth.pm/items/6275056"
-export const GITHUB_URL = "https://github.com/yuarasino/wordpretty"
-export const TWITTER_URL = "https://x.com/yuarasino"

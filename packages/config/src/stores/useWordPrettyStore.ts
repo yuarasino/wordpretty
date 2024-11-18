@@ -1,11 +1,11 @@
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 import { atom, useAtomValue, useSetAtom } from "jotai"
 import { focusAtom } from "jotai-optics"
 import { nanoid } from "nanoid"
 import { useMemo } from "react"
 import { pluginConfigAtom, savePluginConfigAtom } from "./usePluginConfigStore"
 
-import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
+import type { WordPrettyItem } from "@wordpretty/core/src/types"
 
 export const wordPrettyAtom = focusAtom(pluginConfigAtom, (optic) =>
   optic.prop("wordPretty"),

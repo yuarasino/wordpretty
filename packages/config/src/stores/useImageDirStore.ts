@@ -1,11 +1,11 @@
-import * as consts from "@wordpretty/shared/lib/consts"
+import * as consts from "@wordpretty/core/src/consts"
 import { atom, useAtomValue, useSetAtom } from "jotai"
 import { useMemo } from "react"
 
 import type {
   ImageDirAction,
   ImageDirResult,
-} from "@wordpretty/shared/lib/types"
+} from "@wordpretty/core/src/types"
 
 export const imagesAtom = atom([] as string[])
 

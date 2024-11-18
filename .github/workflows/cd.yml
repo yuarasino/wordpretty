@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  cd:
     runs-on: ubuntu-latest
     steps:
     - name: checkout code
@@ -22,18 +22,18 @@ jobs:
       run: bun install
     - name: exec build
       run: bun run build
-    - name: setup release
-      run: bun run setuprelease
-      id: release
+    - name: info build
+      run: bun run infobuild
+      id: info
     - name: rename dist
-      run: mv dist ${{ steps.release.outputs.name }}
+      run: mv dist ${{ steps.info.outputs.name }}
     - name: zip dist
-      run: zip -r ${{ steps.release.outputs.file }} ${{ steps.release.outputs.name }}
+      run: zip -r ${{ steps.info.outputs.file }} ${{ steps.info.outputs.name }}
     - name: create release
       uses: softprops/action-gh-release@v2
       with:
         draft: true
-        name: ${{ steps.release.outputs.version }}
-        tag_name: ${{ steps.release.outputs.version }}
-        body: ${{ steps.release.outputs.version }}
-        files: ${{ steps.release.outputs.file }}
+        name: ${{ steps.info.outputs.version }}
+        tag_name: ${{ steps.info.outputs.version }}
+        body: ${{ steps.info.outputs.version }}
+        files: ${{ steps.info.outputs.file }}

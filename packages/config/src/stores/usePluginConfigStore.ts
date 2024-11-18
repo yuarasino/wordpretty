@@ -1,5 +1,5 @@
-import * as consts from "@wordpretty/shared/lib/consts"
-import { deepCopy } from "@wordpretty/shared/lib/utils"
+import * as consts from "@wordpretty/core/src/consts"
+import { deepCopy } from "@wordpretty/core/src/utils"
 import { atom, useAtomValue, useSetAtom } from "jotai"
 import { useMemo } from "react"
 

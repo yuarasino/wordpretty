@@ -12,7 +12,7 @@ import { useState } from "react"
 import useWordPrettyStore from "../stores/useWordPrettyStore"
 import ConfirmDialog from "./ConfirmDialog"
 
-import type { WordPrettyItem } from "@wordpretty/shared/lib/types"
+import type { WordPrettyItem } from "@wordpretty/core/src/types"
 
 export type WordPrettyListItemProps = {
   item: WordPrettyItem
