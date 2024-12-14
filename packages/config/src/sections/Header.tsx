@@ -23,7 +23,8 @@ export default function Header() {
         <IconButton color="inherit" href={consts.GITHUB_URL} target="_blank">
           <GitHubIcon />
         </IconButton>
-        <IconButton color="inherit" href={consts.TWITTER_URL} target="_blank">
+        <span>サポートはXのDMまで→</span>
+        <IconButton color="inherit" href={consts.X_URL} target="_blank">
           <XIcon />
         </IconButton>
         <Typography component="div" variant="subtitle1" sx={{ marginLeft: 1 }}>

@@ -10,11 +10,11 @@ import type { WordPrettyItem } from "@wordpretty/core/src/types"
 
 function createImgWithMargin(item: WordPrettyItem): string {
   const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
-  return `<img src="${src}" alt="${item.name}" class="illust" style="width:auto;height:${item.size}px;margin-block:2px;margin-inline-end:4px;">`
+  return `<img src="${src}" alt="${item.name}" class="illust illust-${item.id} margin">`
 }
 
 function createSpanWithMargin(content: string): string {
-  return `<span style="margin-inline-end:4px;">${content}</span>`
+  return `<span class="margin">${content}</span>`
 }
 
 describe("applyWordPretty/applyMahjongPretty", () => {

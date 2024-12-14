@@ -1,5 +1,4 @@
-わんコメプラグイン「{{ PLUGIN_NAME_JA }}」
-onecomme plugin "{{ PLUGIN_NAME }}"
+{{ PLUGIN_NAME_JA }}
 
 バージョン: v{{ PLUGIN_VERSION }}
 作者: {{ PLUGIN_AUTHOR_JA }}
@@ -25,6 +24,11 @@ onecomme plugin "{{ PLUGIN_NAME }}"
 
 ・設定の仕方はわんコメ公式の「WordParty」を参考にしてください。
   https://onecomme.com/docs/feature/wordparty-editor
+
+・(重要)わんコメv7.0から、プラグインだけではスタイルを変更することができなくなりました。
+　その対応として、OBSのカスタムCSSの先頭に、以下の1行を追加してください。
+
+  @import url('{{{ PLUGIN_CSS_URL }}}');
 
 
 
@@ -55,7 +59,7 @@ onecomme plugin "{{ PLUGIN_NAME }}"
 ・クレジット表記は不要です。
 ・もし以下のような感じで概要欄などに入れてくれたらすごく喜びます。
 
-　コメント欄のイラスト表示「WordPretty」 {{{ BOOTH_URL }}}
+　コメント欄のイラスト表示「{{ PLUGIN_NAME_JA }}」 {{{ BOOTH_URL }}}
 
 
 【禁止事項】
@@ -67,18 +71,19 @@ onecomme plugin "{{ PLUGIN_NAME }}"
 【免責事項】
 
 ・本プラグインを使用したことによって生じた損害・損失に対して開発者は一切責任を負いません。
+・わんコメ側のアップデートで動かなくなることがあります。その場合はできるだけ対応しますが、対応が遅れる場合があります。
 
 
 
 ◆ アップデートについて ◆
 
-・プラグインフォルダ内の`state.json`に設定データ、`images`フォルダに画像が入っています。
+・プラグインフォルダ内の `state.json` に設定データ、`images` フォルダに画像が入っています。
 　アップデートする前に、この2つを別の場所にコピーしておいてください。
 
 ・アップデートはプラグインのフォルダごとファイルを置き換えてコピーしてください。
 　
 ・もしくは、古いプラグインを削除して新しいプラグインをコピーしてから、
-　`state.json`と`images`フォルダをプラグインフォルダ内にコピーしてください。
+　`state.json` と `images` フォルダをプラグインフォルダ内にコピーしてください。
 
 
 

@@ -37,6 +37,11 @@ export function replaceItemPattern(text: string, item: WordPrettyItem): string {
   return text
 }
 
+export function createImg(item: WordPrettyItem): string {
+  const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
+  return `<img src="${src}" alt="${item.name}" class="illust illust-${item.id}">`
+}
+
 export function addImageMargin(text: string): string {
   text = execFuncOnElementNode(text, (child) => {
     const sibling = DomUtils.nextElementSibling(child)
@@ -46,16 +51,11 @@ export function addImageMargin(text: string): string {
       const cb = cc ? cc.includes("illust") : false
       const sb = sc ? sc.includes("illust") : false
       if ((cb && !sb) || (!cb && sb)) {
-        const cs = child.attribs.style
-        child.attribs.style = `${cs ? cs : ""}margin-inline-end:4px;`
+        const cl = child.attribs.class
+        child.attribs.class = `${cl ? `${cl} ` : ""}margin`
       }
     }
     return render(child, { encodeEntities: false })
   })
   return text
-}
-
-export function createImg(item: WordPrettyItem): string {
-  const src = `${consts.PLUGIN_WEB_EP}/images/${item.image}`
-  return `<img src="${src}" alt="${item.name}" class="illust" style="width:auto;height:${item.size}px;margin-block:2px;">`
 }

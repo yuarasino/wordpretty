@@ -11,12 +11,14 @@ import type {
   ImageDirResult,
   PluginConfig,
 } from "@wordpretty/core/src/types"
+import generateCustomCss from "./logics/generateCustomCss"
 
 async function loadPluginConfig(
   req: PluginRequest,
   api: PluginAPI,
 ): Promise<PluginResponse> {
   const config = api.store.store as PluginConfig
+  generateCustomCss(api.dir, config)
   return { code: 200, response: JSON.stringify(config) }
 }
 
@@ -26,6 +28,7 @@ async function savePluginConfig(
 ): Promise<PluginResponse> {
   const config = JSON.parse(req.body) as PluginConfig
   api.store.store = config
+  generateCustomCss(api.dir, config)
   return { code: 200, response: JSON.stringify(config) }
 }
 
