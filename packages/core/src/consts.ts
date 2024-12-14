@@ -3,7 +3,7 @@ import type { PluginConfig, WordPrettyItem } from "./types"
 export const PLUGIN_NAME = "wordpretty"
 export const PLUGIN_NAME_JA = "WordPretty"
 export const PLUGIN_UID = `net.yuarasino.${PLUGIN_NAME}`
-export const PLUGIN_VERSION = "1.1.0"
+export const PLUGIN_VERSION = "1.2.0"
 export const PLUGIN_AUTHOR = "yuarasino"
 export const PLUGIN_AUTHOR_JA = "新篠ゆう"
 export const PLUGIN_WEB_EP = `http://localhost:11180/plugins/${PLUGIN_UID}`
